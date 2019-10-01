@@ -9,53 +9,81 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {
+  interface AButton {
     /**
-    * The first name
+    * The classes for the button
     */
-    'first': string;
+    'classes': string;
     /**
-    * The last name
+    * The value inside the button
     */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+    'value': string;
+  }
+  interface ACard {
+    'body': string;
+    'date': Date;
+    'nickname': string;
+    'username': string;
+  }
+  interface AGroupButton {
+    'number': number;
+    'values': string;
   }
 }
 
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLAButtonElement extends Components.AButton, HTMLStencilElement {}
+  var HTMLAButtonElement: {
+    prototype: HTMLAButtonElement;
+    new (): HTMLAButtonElement;
+  };
+
+  interface HTMLACardElement extends Components.ACard, HTMLStencilElement {}
+  var HTMLACardElement: {
+    prototype: HTMLACardElement;
+    new (): HTMLACardElement;
+  };
+
+  interface HTMLAGroupButtonElement extends Components.AGroupButton, HTMLStencilElement {}
+  var HTMLAGroupButtonElement: {
+    prototype: HTMLAGroupButtonElement;
+    new (): HTMLAGroupButtonElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'a-button': HTMLAButtonElement;
+    'a-card': HTMLACardElement;
+    'a-group-button': HTMLAGroupButtonElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
+  interface AButton {
     /**
-    * The first name
+    * The classes for the button
     */
-    'first'?: string;
+    'classes'?: string;
     /**
-    * The last name
+    * The value inside the button
     */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+    'value'?: string;
+  }
+  interface ACard {
+    'body'?: string;
+    'date'?: Date;
+    'nickname'?: string;
+    'username'?: string;
+  }
+  interface AGroupButton {
+    'number'?: number;
+    'values'?: string;
   }
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
+    'a-button': AButton;
+    'a-card': ACard;
+    'a-group-button': AGroupButton;
   }
 }
 
@@ -64,7 +92,11 @@ export { LocalJSX as JSX };
 
 declare module "@stencil/core" {
   export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+    interface IntrinsicElements {
+      'a-button': LocalJSX.AButton & JSXBase.HTMLAttributes<HTMLAButtonElement>;
+      'a-card': LocalJSX.ACard & JSXBase.HTMLAttributes<HTMLACardElement>;
+      'a-group-button': LocalJSX.AGroupButton & JSXBase.HTMLAttributes<HTMLAGroupButtonElement>;
+    }
   }
 }
 
