@@ -12,12 +12,18 @@ export class ACard {
 
     @Prop() username: string = null;
 
-    @Prop() date: Date = new Date();
+    @Prop() date: string = null;
 
-    @Prop() body: string = "Some body text";
+    @Prop() body: string = "dome_random_bdy_text";
+
+    private momentDate: Moment.Moment = Moment();
+
+    constructor() {
+        this.momentDate = this.date ? Moment(this.date) : Moment();
+    }
 
     render() {
-        let dateFormatted = Moment(this.date).format("HH:mm -  DD MMM YYYY");
+        let formatedDate = this.momentDate.format("HH:mm - DD MMM YYYY");
         return (
             <div class="card">
                 <div class="card__header">
@@ -30,10 +36,10 @@ export class ACard {
                     </div>
                 </div>
                 <div class="card__body">
-                    { this.body }
+                    <slot name="body" />
                 </div>
-                <div class="card__date">
-                    { dateFormatted }
+                <div class="card__footer">
+                    { formatedDate }
                 </div>
             </div>
         );

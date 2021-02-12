@@ -21,13 +21,12 @@ export namespace Components {
   }
   interface ACard {
     'body': string;
-    'date': Date;
+    'date': string;
     'nickname': string;
     'username': string;
   }
   interface AGroupButton {
-    'number': number;
-    'values': string;
+    'buttons': string;
   }
 }
 
@@ -71,13 +70,12 @@ declare namespace LocalJSX {
   }
   interface ACard {
     'body'?: string;
-    'date'?: Date;
+    'date'?: string;
     'nickname'?: string;
     'username'?: string;
   }
   interface AGroupButton {
-    'number'?: number;
-    'values'?: string;
+    'buttons'?: string;
   }
 
   interface IntrinsicElements {
